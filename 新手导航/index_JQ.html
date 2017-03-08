@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin:0;padding:0;}
+        html{height:100%;}
+        body{background: url("images/body.png") center top;height:100%;}
+        #mask{width:100%;height:100%;position: absolute;top:0;left:0;
+            background: black;opacity: 0.5;filter:alpha(opacity=50);
+            display: none;}
+        #searchTip{height:800px;
+            width: 980px;position: absolute;left:50%;margin-left: -490px;
+            display: none;}
+        #searchTip div{position: absolute; display: none; }
+        #searchTip div a{position: absolute;  width: 95px;  height: 32px;
+            text-indent: -999px;overflow: hidden;  cursor: pointer;
+        }
+        #searchTip div span{position: absolute;  width: 30px;  height: 30px;
+            text-indent: -999px;overflow: hidden;
+            cursor: pointer;}
+        .stepA{
+            width: 745px;  height: 329px;background: url("images/guide11.png");
+            top:131px;left:-9px;}
+        .stepA span{top:144px;  left:683px;}
+        .stepA a{top:231px;  left: 490px;}
+        .stepB{ background:url(images/guide21.png); width:647px; height:405px;top:2px; left:324px}
+        .stepB a{top:308px; left:146px;}
+        .stepB span{ top:196px; right:285px; }
+
+        .stepC{ background:url(images/guide31.png); width:654px; height:257px;top:294px; left:318px}
+        .stepC a{top:155px; left:400px; }
+        .stepC span{ top:44px; right:35px; }
+
+        .stepD{ background:url(images/guide41.png); width:558px; height:348px;top:78px; left:155px}
+        .stepD a{top:246px; left:304px;}
+        .stepD span{ top:135px; right:35px; }
+
+        .stepE{ background:url(images/guide51.png); width:397px; height:342px;top:79px; left:250px}
+        .stepE a{top:245px; left:153px;}
+    </style>
+</head>
+<body>
+<div id="mask"></div>
+<div id="searchTip">
+    <div class="stepA"><a>下一步</a><span title="关闭">关闭</span></div>
+    <div class="stepB"><a>下一步</a><span title="关闭">关闭</span></div>
+    <div class="stepC"><a>下一步</a><span title="关闭">关闭</span></div>
+    <div class="stepD"><a>下一步</a><span title="关闭">关闭</span></div>
+    <div class="stepE"><a>下一步</a><span title="关闭">关闭</span></div>
+</div>
+<script src="jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+      /*  //读取cookie
+        var res=document.cookie.substring(5);//www.open.com.cn   w的下标为5
+        //只有火狐浏览器才支持本地写cookie的测试，因为是与服务器交换数据的过程
+        //往电脑写cookie的行为是服务器行为。只有访问服务器，服务器才会往电脑写cookie。
+        //我们写的只是普通的网页,无法往你的电脑上写cookie信息
+        //但是firefox是支持本地往电脑写cookie的。所以我们用firefox来做这种本地的测试。
+        //查看页面更多cookie信息:右键查看页面信息--详细信息--查看Cookie
+        alert("当前cookies="+"("+res+")");
+        //判断是否来过
+        if(res!="www.open.com.cn"){
+            alert("没有登录过");*/
+    $('#mask,#searchTip,#searchTip div:eq(0)').show();
+            $('#searchTip div a').click(function () {
+                var current=$(this).parent();
+                current.hide();
+                current.next().show();
+            })
+        $('#searchTip div span,#searchTip div a:last').click(function () {
+            $('#mask,#searchTip').hide();
+        });
+       /*     //如果没有来过，添加cookie
+            var oDate=new Date();
+            oDate.setDate(oDate.getDate()+30);//30天失效,重新载入新手引导
+            //name可以随便写,expires失效时间，获取当前时间，设置失效时间
+            //使用cookie向客户端存储设置信息
+            document.cookie="name=www.open.com.cn;expires="+oDate;
+        }*/
+    })
+
+</script>
+</body>
+</html>
