@@ -1,0 +1,180 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>瀑布流</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript">
+        window.onload=function(){
+            waterfall('main','box');
+            var dataInt={"data":[{"src":'0.jpg'},{"src":'1.jpg'},{"src":'2.jpg'},{"src":'3.jpg'}]};
+            window.onscroll=function () {
+                var oParent=document.getElementById('main');
+                if(checkScrollSlide){
+                  for(var i=0;i<dataInt.data.length;i++){
+                      var oBox=document.createElement('div');
+                      oBox.className="box";
+                      oParent.appendChild(oBox);
+                      var oPic=document.createElement('div');
+                      oPic.className='pic';
+                      oBox.appendChild(oPic);
+                      var oImg=document.createElement('img');
+                      oImg.src="images/"+dataInt.data[i].src;
+                      oPic.appendChild(oImg);
+                  }
+                    waterfall('main','box');
+                }
+                //checkScrollSlide();
+            }
+        }
+        function waterfall(parent,box){
+//姜main下的所有的class为box的元素取出来
+            var oParent=document.getElementById(parent);
+            var oBoxs=getByClass(oParent,box);
+//计算整个页面显示的列数（页面宽度/box的宽度）
+            var oBoxW=oBoxs[0].offsetWidth;
+            var cols=Math.floor(document.documentElement.clientWidth/oBoxW);
+//设置main的宽度
+            oParent.style.cssText='width:'+oBoxW*cols+'px;margin:0 auto';
+            var hArr=[];
+
+            for(var i=0;i<oBoxs.length;i++){
+                if(i<cols){
+                    hArr.push(oBoxs[i].offsetHeight)
+                }else{
+                    var minH=Math.min.apply(null,hArr);
+                    var index= getMinhIndex(hArr,minH);
+                    oBoxs[i].style.position='absolute';
+                    oBoxs[i].style.top=minH+'px';
+                   // oBoxs[i].style.left=oBoxW*index+'px';
+                    oBoxs[i].style.left=oBoxs[index].offsetLeft+'px';
+                    hArr[index]+=oBoxs[i].offsetHeight;
+
+                }
+            }
+            console.log(hArr);
+
+        }
+        function getByClass(parent,clsName){
+            var boxArr=new Array(),//用来存储获取到的所有class元素
+                    oElements=parent.getElementsByTagName("*");
+            for(var i=0;i<oElements.length;i++){
+                if(oElements[i].className==clsName){
+                    boxArr.push(oElements[i]);
+                }
+            }
+            return boxArr;
+        }
+function getMinhIndex(arr,val) {
+    for(var i in arr){
+        if(arr[i]==val){
+            return i;
+        }
+    }
+}
+function checkScrollSlide() {
+    var oParent=document.getElementById('main');
+    var oBoxs=getByClass(oParent,'box');
+    var lastBoxH=oBoxs[oBoxs.length-1].offsetTop+Math.floor(oBoxs[oBoxs.length-1].offsetHeight/2);
+    //混杂模式下/标准模式下
+    var scrollTop=document.body.scrollTop||document.documentElement.scrollTop;
+   // console.log(scrollTop);
+    var height=document.body.clientHeight||document.documentElement.clientHeight;
+    //console.log(height);
+    return(lastBoxH<scrollTop+height)?true:false;
+}
+    </script>
+</head>
+<body>
+<div id="main">
+    <div class="box">
+        <div class="pic">
+            <img src="images/1.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/2.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/3.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/4.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/5.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/6.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/7.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/8.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/9.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/10.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/11.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/12.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/13.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/14.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/15.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/16.jpg" alt="" />
+        </div>
+    </div>
+    <div class="box">
+        <div class="pic">
+            <img src="images/17.jpg" alt="" />
+        </div>
+    </div>
+
+
+
+
+</div>
+</body>
+</html>
