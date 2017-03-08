@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="framework" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://D:/idea/angular-1.4.0" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://D:/idea/angular-1.4.0" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
